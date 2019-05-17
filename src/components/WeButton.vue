@@ -1,5 +1,6 @@
 <template>
-    <a href="javascript:;" class="weui-btn" :class="[typeStyle,disabledStyle,sizeStyle]">
+    <a href="javascript:;" class="weui-btn" :class="[typeStyle,disabledStyle,sizeStyle,loadingStyle]">
+        <i class="weui-loading" v-if="loading"></i>
         <slot></slot>
     </a>     
 </template>
@@ -21,6 +22,10 @@ export default {
         size:{
             type:String,
             default:"default"
+        },
+        loading:{
+            type:Boolean,
+            default:false
         }
     },
     computed:{
@@ -36,6 +41,7 @@ export default {
                 default:
                 s=this.plain?"weui-btn_plain-default":"weui-btn_default";
                 break;
+
             }
             return s;
         },
@@ -50,6 +56,9 @@ export default {
                 default:s="";break;
             }
             return s;
+        },
+        loadingStyle:function(){
+            return this.loading?"weui-btn_loading":"";
         }
     }
 
